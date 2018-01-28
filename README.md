@@ -11,5 +11,5 @@ Making a package:
 * roscreate-pkg wander rospy std_msgs
 * in this directory you will put your launch file and python file
 <br/>
-never use this link: (it permanently changes your bashrc file)
-* http://wiki.ros.org/Robots/TurtleBot/Network%20Setup
+never use this link: (it permanently changes your bashrc file) <br/>
+* link: http://wiki.ros.org/Robots/TurtleBot/Network%20Setup
