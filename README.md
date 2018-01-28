@@ -12,4 +12,4 @@ Making a package:
 * in this directory you will put your launch file and python file
 <br/>
 never use this link: (it permanently changes your bashrc file)
-*http://wiki.ros.org/Robots/TurtleBot/Network%20Setup
+* http://wiki.ros.org/Robots/TurtleBot/Network%20Setup
