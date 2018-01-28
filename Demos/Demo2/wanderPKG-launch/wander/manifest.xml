@@ -1,0 +1,16 @@
+<package>
+  <description brief="wander">
+
+     wander
+
+  </description>
+  <author>Mandy</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/wander</url>
+  <depend package="rospy"/>
+  <depend package="std_msgs"/>
+
+</package>
+
+

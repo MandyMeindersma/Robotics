@@ -1,0 +1,8 @@
+<launch>
+    <node name="wanderSM" pkg="wander" type="wanderSM.py"
+output="screen" >
+        <remap from="cmd_vel" to="cmd_vel_mux/input/teleop"/>
+    </node>
+    <node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py">
+    </node>
+</launch>
