@@ -5,27 +5,46 @@ from sensor_msgs.msg import LaserScan
 import smach
 import smach_ros
 import time
+import math
 
 def scan_callback(msg):
     global g_range_ahead
-    g_range_ahead = min(msg.ranges)
+    g_range_ahead = msg.ranges[len(msg.ranges)/2]
 
 g_range_ahead = 1
 
 class Forward(smach.State):
     def __init__(self):
-        smach.State.__init__(self, outcomes=['more_forward','hit']) 
+        smach.State.__init__(self, outcomes=['more_forward','hit'],
+                                   input_keys=['forward_vel_in'],
+                                   output_keys=['forward_vel_out']) 
+
+    def ramped_vel(self, v_prev, v_target, ramp_rate):
+        print(v_prev)
+        step = ramp_rate * 0.1
+        sign = 1.0 if (v_target > v_prev) else -1.0
+        error = math.fabs(v_target - v_prev)
+        if error < step: # we can get there in this time so we are done
+            return v_target
+        else:
+            return v_prev + sign*step
+
+
 
     def execute(self, userdata):
         rospy.loginfo('Executing state Forward')
-        time.sleep(1)
+        time.sleep(0.1)
         twist = Twist()
         twist.linear.y = 0
         twist.linear.z = 0
         twist.angular.x = 0
         twist.angular.y = 0
         twist.angular.z = 0
-        twist.linear.x = 1
+        target = 0.4
+        ramp_rate = 1
+        new_vel = self.ramped_vel(userdata.forward_vel_in, target, ramp_rate)
+        twist.linear.x = new_vel
+        userdata.forward_vel_out = new_vel
         cmd_vel_pub.publish(twist)
         if g_range_ahead < 0.8:
             return 'hit'
@@ -39,16 +58,17 @@ class Spinning(smach.State):
 
     def execute(self, userdata):
         rospy.loginfo('Executing state Spinning')
-        time.sleep(1)
-        twist = Twist()
-        twist.linear.x = 0
-        twist.linear.y = 0
-        twist.linear.z = 0
-        twist.angular.x = 0
-        twist.angular.y = 0
-        twist.angular.z = 2
+        time.sleep(0.1)
+	for i in range(10000):
+            twist = Twist()
+            twist.linear.x = 0
+            twist.linear.y = 0
+            twist.linear.z = 0
+            twist.angular.x = 0
+            twist.angular.y = 0
+            twist.angular.z = 1
         cmd_vel_pub.publish(twist)
-        if g_range_ahead < 0.8:
+        if g_range_ahead < 2:
             return 'more_spinning'
         else:
             return 'spun'
@@ -62,13 +82,15 @@ def main():
     
     # Create a SMACH state machine
     sm = smach.StateMachine(outcomes=['start'])
-
+    sm.userdata.vel = 0
     # Open the container
     with sm:
         # Add states to the container
         smach.StateMachine.add('Forward', Forward(), 
                                transitions={'more_forward':'Forward', 
-                                            'hit':'Spinning'})
+                                            'hit':'Spinning'},
+                               remapping={'forward_vel_in':'vel', 
+                                          'forward_vel_out':'vel'})
         smach.StateMachine.add('Spinning', Spinning(), 
                                transitions={'spun':'Forward',
                                             'more_spinning':'Spinning'})

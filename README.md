@@ -3,12 +3,19 @@ Cmput 412 - Experimental Mobile Robotics
 
 Check out our site: https://sites.google.com/ualberta.ca/experimental-mobile-robotics/home
 
-Making a package:
-mkdir ros_package && cd ros_package
-gedit .bashrc
-in bashrc file: (comment out after) 'export ROS_PACKAGE_PATH=~/ros_package:$ROS_PACKAGE_PATH'
-roscreate-pkg wander rospy std_msgs
-* in this directory you will put your launch file and python file
+Making a package: <br/>
+setup:
+* mkdir -p ~/catkin_ws/src
+* cd ~/catkin_ws/src
+* catkin_init_workspace
+* cd ~/catkin_ws
+* catkin_make
+* source devel/setup.bash <br/>
+new package:
+* cd ~/catkin_ws/src
+* catkin_create_pkg my_awesome_code rospy
+* DO NOT FORGET TO CHANGE EXECUTE PERMISSIONS chmod u+x topic_publisher.py
+
 
 never use this link: (it permanently changes your bashrc file)
 http://wiki.ros.org/Robots/TurtleBot/Network%20Setup
