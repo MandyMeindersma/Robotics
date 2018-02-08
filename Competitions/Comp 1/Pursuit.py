@@ -14,6 +14,7 @@
     
     Created for the Pi Robot Project: http://www.pirobot.org
     Copyright (c) 2012 Patrick Goebel.  All rights reserved.
+
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation; either version 2 of the License, or
@@ -34,8 +35,27 @@ from sensor_msgs.msg import PointCloud2
 from geometry_msgs.msg import Twist
 from math import copysign
 
+def sense_joystick(data):
+    global x_pressed
+    global b_pressed
+    print(data.buttons)
+    if data.buttons[2] == 1:
+        x_pressed = True
+    else:
+        x_pressed = False
+    if data.buttons[1] == 1:
+        b_pressed = True
+    else:
+        b_pressed = False
+
+
+x_pressed = False
+b_pressed = False
+
+
 class Follower():
     def __init__(self):
+        #print("initializing")
         rospy.init_node("follower")
         
         # Set the shutdown function (stop the robot)
@@ -78,7 +98,7 @@ class Follower():
         # Publisher to control the robot's movement
         self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=5)
 
-        # Subscribe to the point cloud
+        # Subscribe to the point cloud and jostick
         self.depth_subscriber = rospy.Subscriber('point_cloud', PointCloud2, self.set_cmd_vel, queue_size=1)
 
         rospy.loginfo("Subscribing to point cloud...")
@@ -89,11 +109,18 @@ class Follower():
         rospy.loginfo("Ready to follow!")
         
     def set_cmd_vel(self, msg):
+
+        if b_pressed:
+            while True:
+                #print("stopped")
+                time.sleep(2)
+        print("got pointcloud info")
         # Initialize the centroid coordinates point count
         x = y = z = n = 0
         
         # Read in the x, y, z coordinates of all points in the cloud
         for point in point_cloud2.read_points(msg, skip_nans=True):
+            #print("reading points")
             pt_x = point[0]
             pt_y = point[1]
             pt_z = point[2]
@@ -105,12 +132,14 @@ class Follower():
         
         # If we have points, compute the centroid coordinates
         if n:
+            #print("doing someting")
             x /= n 
             y /= n 
             z /= n
             
             # Check our movement thresholds
             if (abs(z - self.goal_z) > self.z_threshold):
+                print("should move?")
                 # Compute the angular component of the movement
                 linear_speed = (z - self.goal_z) * self.z_scale
                 
@@ -125,6 +154,8 @@ class Follower():
                 angular_speed = -x * self.x_scale
                 
                 # Make sure we meet our min/max specifications
+                print("thing", copysign(max(self.min_angular_speed, 
+                                        min(self.max_angular_speed, abs(angular_speed))), angular_speed))
                 self.move_cmd.angular.z = copysign(max(self.min_angular_speed, 
                                         min(self.max_angular_speed, abs(angular_speed))), angular_speed)
             else:
@@ -138,7 +169,7 @@ class Follower():
             
         # Publish the movement command
         self.cmd_vel_pub.publish(self.move_cmd)
-
+        print("publishing move command")
         
     def shutdown(self):
         rospy.loginfo("Stopping the robot...")

@@ -1,0 +1,9 @@
+<launch>
+    <node name="wanderComp" pkg="wander" type="Evasion.py"
+output="screen" >
+        <remap from="cmd_vel" to="cmd_vel_mux/input/teleop"/>
+    </node>
+	<node name="joy" pkg="joy" type="joy_node"></node>
+    <!--<node name="smach_viewer" pkg="smach_viewer" type="smach_viewer.py">
+    </node>-->
+</launch>
