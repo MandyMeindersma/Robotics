@@ -13,7 +13,12 @@ setup:
 new package:
 * cd ~/catkin_ws/src
 * catkin_create_pkg my_awesome_code rospy
-* DO NOT FORGET TO CHANGE EXECUTE PERMISSIONS chmod u+x topic_publisher.py
+* DO NOT FORGET TO CHANGE EXECUTE PERMISSIONS chmod u+x topic_publisher.py <br/>
+
+Links for last year groups websites:
+* https://brainever.wordpress.com/
+* https://412robot9000.wordpress.com/ 
+* https://steveyangrh.github.io/CMPUT412Presentations/
 
 
 never use this link: (it permanently changes your bashrc file)
