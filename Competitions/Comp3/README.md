@@ -1,5 +1,5 @@
 # to run:
-* rosmaster
+* roscore
 * roslaunch turtlebot_bringup minimal.launch
 * rosparam set joy-node/dev "/dev/input/js0"
 * rosrun joy joy_node (to hit the joystick buttons to kill the program)
