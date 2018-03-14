@@ -9,6 +9,6 @@
     * this is where we can initialize points
     * this is also where we can get point info
 * rosrun rqt_reconfigure rqt_reconfigure (to change speed)
-* rosparam set /move_base/min_vel_x 0.7 or /move_base/TragectoryPlannerROS/min_vel_x 0.7
+* rosparam set /move_base/min_vel_x 0.7 or /move_base/TragectoryPlannerROS/min_vel_x 0.7 (to change speed)
 * ./MapFollower.py
 
