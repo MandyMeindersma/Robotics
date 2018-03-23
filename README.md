@@ -20,6 +20,12 @@ Links for last year groups websites:
 * https://412robot9000.wordpress.com/ 
 * https://steveyangrh.github.io/CMPUT412Presentations/
 
+Links for this years websites:
+* https://github.com/leoyoon17/CMPUT-412-Competition-1
+*	https://github.com/erichsueh/LifePoints-412-Comp1/wiki
+*	https://sites.google.com/ualberta.ca/cmput412team4w18
+* https://sites.google.com/ualberta.ca/thedaffyduckdivision/competitions/0001
+
 
 never use this link: (it permanently changes your bashrc file)
 http://wiki.ros.org/Robots/TurtleBot/Network%20Setup
