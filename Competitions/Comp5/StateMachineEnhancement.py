@@ -65,6 +65,19 @@ class Guide(smach.State):
                 return 'human_lost'
         else:
             return 'arrived'
+        
+class Guide(smach.State):
+    def __init__(self):
+        smach.State.__init__(self, outcomes=['found','not_found'])
+
+    def execute(self, userdata):
+        rospy.loginfo('Executing Guide state')
+        found = True
+        # TODO: code to make sure a human is following
+        if found:
+            return 'found'
+        else:
+            return 'not_found'
 
 def main():
     rospy.init_node('GuideBot')
@@ -89,7 +102,7 @@ def main():
                                transitions={'arrived':'GoHome',
                                             'human_following':'Guide',
                                             'human_lost':'FindHuman'})
-        smach.StateMachine.add('FindHuman', MatchToHome(), 
+        smach.StateMachine.add('FindHuman', FindHuman(), 
                                transitions={'found':'Guide',
                                             'not_found':'FindHuman'})
 
