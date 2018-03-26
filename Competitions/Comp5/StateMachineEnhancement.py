@@ -66,7 +66,7 @@ class Guide(smach.State):
         else:
             return 'arrived'
         
-class Guide(smach.State):
+class FindHuman(smach.State):
     def __init__(self):
         smach.State.__init__(self, outcomes=['found','not_found'])
 
