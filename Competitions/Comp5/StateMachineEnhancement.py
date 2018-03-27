@@ -108,7 +108,7 @@ def main():
 
  
     # Create and start the introspection server
-    sis = smach_ros.IntrospectionServer('server_name', sm, '/GUIDE_BOT')
+    sis = smach_ros.IntrospectionServer('server_name', sm, '/GUIDE_BOT_ENHANCEMENT')
     sis.start()
     
     # Execute the state machine
