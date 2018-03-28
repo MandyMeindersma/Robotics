@@ -12,4 +12,9 @@ time.sleep(1)
 # soundthing.play(SoundRequest.NEEDS_UNPLUGGING)
 # soundthing.voiceSound("Testing the new A P I")
 soundthing.playWave("/home/mandy/winter18/Robotics/Competitions/Comp4/meow.ogg")
-print("sound started")
+print("meow sound started")
+
+time.sleep(3)
+
+soundthing.playWave("/home/mandy/winter18/Robotics/Competitions/Comp4/woof.ogg")
+print("woof sound started")
