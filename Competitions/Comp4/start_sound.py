@@ -16,5 +16,5 @@ print("meow sound started")
 
 time.sleep(3)
 
-soundthing.playWave("/home/mandy/winter18/Robotics/Competitions/Comp4/woof.ogg")
+soundthing.playWave("/home/mandy/winter18/Robotics/Competitions/Comp4/moo.ogg")
 print("woof sound started")

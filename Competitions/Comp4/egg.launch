@@ -6,8 +6,8 @@
     </node>
     <arg name="map_file" default="$(find my_awesome_code)/Comp3Map.yaml"/>
     <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
-    <include file="$(find my_awesome_code)/launch/eggAmcl.launch"/>
-	<!-- <node name="joy" pkg="joy" type="joy_node"></node> -->
+    <include file="$(find my_awesome_code)/eggAmcl.launch"/>
+	<node name="joy" pkg="joy" type="joy_node"></node>
 
 
     <!--Demo 6 part 2-->
