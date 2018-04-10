@@ -5,7 +5,7 @@
 * rosrun joy joy_node (to hit the joystick buttons to kill the program)
 * rosrun map_server map_server Comp3Map.yaml
 * roslaunch turtlebot_navigation amcl_demo.launch map_file:=./Comp3Map.yaml
-* roslaunch turtlebot_rvix_launchers view_navigation.launch
+* roslaunch turtlebot_rviz_launchers view_navigation.launch
     * this is where we can initialize points
     * this is also where we can get point info
 * rosrun rqt_reconfigure rqt_reconfigure (to change speed)
