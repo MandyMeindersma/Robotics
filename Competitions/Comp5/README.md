@@ -22,7 +22,7 @@
 
 
 
-# to instal ros face recognition:
+# to instal ROS face recognition:
 * follow this tutorial: http://wiki.ros.org/face_recognition
     * instead of `rosrun face_recognition Fserver` do ` rosrun face_recognition Fserver camera/image_raw:=camera/rgb/image_raw`
     * instead of `rosrun face_recognition Fclient` do ` rosrun face_recognition Fclient camera/image_raw:=camera/rgb/image_raw`
