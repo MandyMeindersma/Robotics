@@ -15,7 +15,7 @@ class Facerec:
         self.image_sub = rospy.Subscriber('camera/rgb/image_raw',
         Image, self.image_callback, queue_size = 1, buff_size = 2**24)
         self.image = None
-        pic_of_mandy = face_recognition.load_image_file("Mandy.jpeg")
+        pic_of_mandy = face_recognition.load_image_file("Mandy.jpg")
         pic_of_michele = face_recognition.load_image_file("Michele.jpg")
         self.mandy_encoding = face_recognition.face_encodings(pic_of_mandy)[0]
         self.michele_encoding = face_recognition.face_encodings(pic_of_michele)[0]
