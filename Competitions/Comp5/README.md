@@ -13,7 +13,7 @@
 * ./Comp5
 
 
-# to instal python face recognition:
+# to install python face recognition:
 * first, if you have ubuntu 14.04 you will need to go through this tutorial: https://github.com/ageitgey/face_recognition/issues/120
     * instead of `wget https://bootstrap.pypa.io/get-pip.py` do `sudo wget https://bootstrap.pypa.io/get-pip.py`
     * instead of `sudo python get-pip.p` do `sudo python get-pip.py`
@@ -24,7 +24,7 @@
 
 
 
-# to instal ROS face recognition:
+# to install ROS face recognition:
 * follow this tutorial: http://wiki.ros.org/face_recognition
     * instead of `rosrun face_recognition Fserver` do ` rosrun face_recognition Fserver camera/image_raw:=camera/rgb/image_raw`
     * instead of `rosrun face_recognition Fclient` do ` rosrun face_recognition Fclient camera/image_raw:=camera/rgb/image_raw`
