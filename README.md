@@ -1,6 +1,6 @@
 # Cmput 412 - Experimental Mobile Robotics
 
-Check out our site: https://sites.google.com/ualberta.ca/experimental-mobile-robotics/home
+Check out our site: https://www.mandymeindersma.com/robotics/
 
 Making a package: <br/>
 setup:
